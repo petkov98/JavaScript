@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title></title>
+		<script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+		<style>
+			body {
+				background: #20262e;
+				padding: 20px;
+				font-family: Helvetica;
+			}
+
+			#banner-message {
+				background: #fff;
+				border-radius: 4px;
+				padding: 20px;
+				font-size: 25px;
+				text-align: center;
+				transition: all 0.2s;
+				margin: 0 auto;
+				width: 300px;
+			}
+
+			button {
+				background: #0084ff;
+				border: none;
+				border-radius: 5px;
+				padding: 8px 14px;
+				font-size: 15px;
+				color: #fff;
+			}
+
+			#banner-message.alt {
+				background: #0084ff;
+				color: #fff;
+				margin-top: 40px;
+				width: 200px;
+			}
+
+			#banner-message.alt button {
+				background: #fff;
+				color: #000;
+			}
+
+			#result {
+				margin-top: 10px;
+			}
+
+			#result p {
+				font-size: 12px;
+				line-height: 1.2;
+				margin: 0;
+			}
+		</style>
+
+		<script type="text/javascript">
+			var possibleResults = [
+				["You tied!", "You lost!", "You won!"],
+				["You won!", "You tied!", "You lost!"],
+				["You lost!", "You won!", "You tied!"],
+			];
+
+			var possibleChoices = ["rock", "paper", "scissor"];
+
+			$(document).ready(function () {
+				$(document).on("click", "button", function (event) {
+					event.preventDefault();
+
+					var computerChoice = Math.floor(Math.random() * 3);
+					var userChoice = $(this).index();
+
+					var resultHtml = `
+						<p>User has chosen  ${possibleChoices[userChoice]}</p>
+						<p>Computer has chosen ${possibleChoices[computerChoice]}</p>
+						<p><strong>${possibleResults[userChoice][computerChoice]}</strong></p> 
+					`;
+
+					$("#result").html(resultHtml);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="banner-message">
+			<button data-choice-name="rock">Rock ✊</button>
+			<button data-choice-name="paper">Paper ✋</button>
+			<button data-choice-name="scissor">Scissor ✌️</button>
+
+			<div id="result"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Timers - Dropdown</title>
+
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="dropdown">
+		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			Dropdown
+			<span class="caret"></span>
+		</button>
+
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<li><a href="#">Action</a></li>
+			<li><a href="#">Another action</a></li>
+			<li><a href="#">Something else here</a></li>
+			<li role="separator" class="divider"></li>
+			<li><a href="#">Separated link</a></li>
+		</ul>
+	</div>
+
+	<script>
+		// Когато курсора влезе в div.dropdown бутона покажете менюто, като добавите клас "open" на div.dropdown
+		// Когато курсора излезе, изчакайте 1 секунда и затворете менюто
+		// Ако курсора на мишката влезе в менюто преди да е изтекла 1 секунда, не затваряйте менюто
+		// Пример: https://s3-eu-west-1.amazonaws.com/codecraft-production/uploads/d864cabd6ae42b99556724de97d632d7/dropdown.webm
+		// Трябва да работите само със събитията mouseenter и mouseleave
+		
+		$(document).ready(function() {
+			let close;
+			let closeMenu = function(){
+				$('div.dropdown').removeClass('open');
+				clearTimeout(close);
+			}
+			$(".dropdown-toggle").on('mouseenter',function() {
+				$('div.dropdown').addClass('open');
+				clearTimeout(close);
+			});
+			$("div.dropdown").on('mouseleave', function() {
+				close = setTimeout(closeMenu, 1000);
+				
+			});
+			$("div.dropdown").on('mouseenter', function() {
+				clearTimeout(close);
+				close = setTimeout(function(){
+					$('div.dropdown').addClass('open');
+				}, 1000);
+
+			})
+		});
+
+	</script>
+</body>
+</html>

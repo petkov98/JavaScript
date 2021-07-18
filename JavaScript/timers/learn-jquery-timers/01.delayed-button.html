@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Delayed Button</title>
+
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+	<button type="button" class="button">Knock knock</button>
+
+	<p>След натискане на бутона, изчакайте 1 секудна и попитайте "Who's there?" чрез `window.prompt()`</p>
+
+	<p>Ако потребителя въведе отговор, изчакайте още една секудна и покажете alert със съобщение `Welcome, [отговора на потребителя]`</p>
+
+	<p>Ако потребителя не даде отговор, покажете съобщение "Go away" без да чакате.</p>
+
+
+	<ul>
+		<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt">https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt</a></li>
+
+		<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/alert">https://developer.mozilla.org/en-US/docs/Web/API/Window/alert</a></li>
+	</ul>
+
+	<p>Пример: <a href="https://s3-eu-west-1.amazonaws.com/codecraft-production/uploads/d1946f41c17588cfcc7d7bfe096e5ffe/dialog.webm">https://s3-eu-west-1.amazonaws.com/codecraft-production/uploads/d1946f41c17588cfcc7d7bfe096e5ffe/dialog.webm</a></p>
+
+	<script>
+		$(document).ready(function() {
+			$('.button').on('click', function(){
+				setTimeout(whosThere, 1000);
+				function whosThere(){
+					let name = prompt("Whos There");
+					if ( name ){
+						setTimeout(function(){ alert("Welcome, " + name + "!"); }, 1000);
+					}else{
+						alert("Go away");
+					}
+				}
+				
+			})
+			
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Timers - Stopwatch</title>
+
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+	<p id="chronometer">00:00:000</p>
+
+	<button type="button" class="start">Start</button>
+
+	<button type="button" class="stop" hidden>Stop</button>
+
+	<button type="button" class="reset" hidden>Reset</button>
+
+	<script>
+		// Създайте хронометър като използвате `window.setInterval`, който трябва да
+		// поддържа следната функционалност:
+		// 	 - старт
+		// 	 - стоп
+		// 	 - рестартиране
+		//
+		// Разгледайте `Date` обекта на Javascript - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+		//
+		// Пример: https://s3-eu-west-1.amazonaws.com/codecraft-production/uploads/db8385d96ac1675d914149ff7dec7ce1/timers-stopwatch.webm
+		
+		$(document).ready(function() {
+			const watch = document.querySelector("#chronometer");
+			let milliseconds = 0;
+			let timer; 
+			$('.start').on('click', function(){
+				$(this).attr('hidden', true);
+				$('.stop').attr('hidden', false);
+				clearInterval(timer);
+				timer = setInterval(() => {
+					milliseconds += 10;
+					let dateTimer = new Date(milliseconds);
+					watch.innerHTML = 
+					('0'+dateTimer.getUTCMinutes()).slice(-2) + ':' +
+					('0'+dateTimer.getUTCSeconds()).slice(-2) + ':' +
+					('0'+dateTimer.getUTCMilliseconds()).slice(-3,-1);
+				}, 10);
+			})
+			$('.stop').on('click', function(){
+				$(this).attr('hidden', true);
+				$('.reset').attr('hidden', false);
+				clearInterval(timer);
+			})
+			$('.reset').on('click', function(){
+				$(this).attr('hidden', true);
+				$(".start").attr('hidden', false);
+				milliseconds = 0;
+				watch.innerHTML = "00:00:000";
+			})
+		});
+	</script>
+</body>
+</html>

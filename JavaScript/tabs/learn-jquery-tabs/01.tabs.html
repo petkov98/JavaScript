@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Tabs</title>
+		<script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script>
+			// Make sure that clicking on the tab titles switches the content below. Here is example:
+			// https://s3-eu-west-1.amazonaws.com/codecraft-production/uploads/e54d918d337a865a1e7ee4c3338c32d6/tabs.webm
+
+			$(document).ready(function () {
+				// href based solution
+				// $(".nav li a").on("click", function (e) {
+				// 	e.preventDefault();
+
+				// 	var $link = $(this);
+				// 	var $parent = $link.parent();
+				// 	var href = $link.attr("href");
+				// 	var $tabContent = $(href);
+
+				// 	$parent
+				// 		.add($tabContent)
+				// 		.addClass("active")
+				// 		.siblings()
+				// 		.removeClass("active");
+				// });
+
+				// index based solution
+				$(".nav li a").on("click", function (e) {
+					e.preventDefault();
+
+					var $link = $(this);
+					var $parent = $link.parent();
+					var index = $parent.index();
+					var $tabContent = $(".tab-pane").eq(index);
+
+					$parent
+						.add($tabContent)
+						.addClass("active")
+						.siblings()
+						.removeClass("active");
+				});
+			});
+		</script>
+		<style>
+			.container {
+				margin-top: 20px;
+			}
+			.tab-pane {
+				border: solid 1px #eee;
+				border-top: 0;
+				padding: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="active">
+							<a href="#home">Home</a>
+						</li>
+
+						<li>
+							<a href="#profile">Profile</a>
+						</li>
+
+						<li>
+							<a href="#messages">Messages</a>
+						</li>
+
+						<li>
+							<a href="#settings">Settings</a>
+						</li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="home">
+							<p>Content tab Home</p>
+						</div>
+
+						<div class="tab-pane" id="profile">
+							<p>Content tab Profile</p>
+						</div>
+
+						<div class="tab-pane" id="messages">
+							<p>Content tab Messages</p>
+						</div>
+
+						<div class="tab-pane" id="settings">
+							<p>Content tab Settings</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

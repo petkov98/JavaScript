@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tabs</title>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script>
+		// Show the Shipping address fields only when the checkbox that indicates
+		// that it's NOT the same as the billing address is not checked
+		// https://s3-eu-west-1.amazonaws.com/codecraft-production/uploads/c9bbdcdbc3229bc3be6e503be5fe80b1/shipping-billing.webm
+
+		$(document).ready(function() {
+			$(".checkbox").click(function() {
+				$('.shipping-address').toggleClass("hidden");
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h1>Checkout</h1>
+
+			<form>
+				<h2>Billing Address</h2>
+
+				<div class="form-group">
+					<label>Address Line 1</label>
+
+					<input type="text" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label>Address Line 2</label>
+
+					<input type="text" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label>City</label>
+
+					<input type="text" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label>ZIP code</label>
+
+					<input type="text" class="form-control">
+				</div>
+
+				<h2>Shipping Address</h2>
+
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" checked> Same as billing address
+					</label>
+				</div>
+
+				<div class="shipping-address hidden">
+					<div class="form-group">
+						<label>Address Line 1</label>
+
+						<input type="text" class="form-control">
+					</div>
+
+					<div class="form-group">
+						<label>Address Line 2</label>
+
+						<input type="text" class="form-control">
+					</div>
+
+					<div class="form-group">
+						<label>City</label>
+
+						<input type="text" class="form-control">
+					</div>
+
+					<div class="form-group">
+						<label>ZIP code</label>
+
+						<input type="text" class="form-control">
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

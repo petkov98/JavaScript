@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tabs</title>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script>
+		// # part 1
+		// Calculate the total for the cart whenever a select box for quantity of any product is changed.
+		// Example: https://s3-eu-west-1.amazonaws.com/codecraft-production/uploads/9d2546c68ec569c139c9d848ee59b823/GIF.gif
+
+		// # part 2
+		// Calculate the total on page load. You need to first change this fragment:
+		// <span id="total">$2780</span>
+		// to:
+		// <span id="total"></span>
+		// and then populate the value with javascript
+
+		// # part 3
+		// Add new option to the quantity field with value 0. When the user selects the the 0 quantity, remove the item line
+		// from the table(i.e. choosing 0 quantity should exclude the item from the order)
+
+		// # part 4
+		// When all items from the order are removed, show a message that indicates this: "There are no items in your order"
+
+		$(document).ready(function() {
+			calculateCartTotals();
+
+			$('.quantity').on('change', function(){
+				var $select = $(this);
+
+				if ( $select.val() == "0" ) {
+					$select.closest('tr').remove();
+				}
+
+				if ( ! $('.quantity').length ) {
+					alert('There are no items in your order!' );
+				}
+
+				calculateCartTotals();
+			})
+		});
+
+		function calculateCartTotals(){
+			var cartTotal = 0;
+
+			$('.quantity').each(function(){
+				var $select = $(this);
+				var qty = $select.val();
+				var price = $select.closest('tr').find('.price').text();
+
+				cartTotal += qty * price;
+			});
+			
+			$('#total').html('$' + cartTotal);
+		}
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h1>Cart</h1>
+
+			<table class="table table-striped cart-table">
+				<thead>
+					<tr>
+						<th>Item</th>
+						<th>Quantity</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>PlayStation 4</td>
+
+						<td>
+							<select class="quantity">
+								<option value="0">0</option>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</td>
+
+						<td>$<span class="price">400</span></td>
+					</tr>
+
+					<tr>
+						<td>LCD TV Sony 55"</td>
+
+						<td>
+							<select class="quantity">
+								<option value="0">0</option>
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</td>
+
+						<td>$<span class="price">2300</span></td>
+					</tr>
+
+					<tr>
+						<td>WiFi Router TLink 22GBP</td>
+
+						<td>
+							<select class="quantity">
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2" selected>2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</td>
+
+						<td>$<span class="price">40</span></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="pull-right">
+				<strong>Total: </strong>
+				<span id="total"></span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

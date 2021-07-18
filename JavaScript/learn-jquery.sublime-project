@@ -1,0 +1,20 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+		},
+		{
+			"path": "rock-paper-scissor\\rock-paper-scissor",
+		},
+		{
+			"path": "ajax-explore-async\\async-ajax-example",
+		},
+		{
+			"path": "ajax-single-page-website\\learn-jquery-single-page-website",
+		},
+		{
+			"path": "city-search\\learn-jquery-city-search",
+		},
+	],
+}

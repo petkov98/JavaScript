@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Accordions</title>
+		<script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script>
+			// Example: https://s3-eu-west-1.amazonaws.com/codecraft-production/uploads/e719d518195b8f04d573b13ba4a47518/dynamic-accordions.webm
+			//
+			// * Every time the duplicate button is clicked, add new accordion at the end of div.panels element
+			// * Make sure that each new accordion works(expands and collapses panes) after it's created
+			//
+			$(document).ready(function () {
+				// method 1
+				$(".panel .panel-heading").on("click", function () {
+					$(this).addClass("opened");
+					$(this).siblings().removeClass("opened");
+					$(this).next().slideToggle("medium");
+
+					$(".collapse").not($(this).next()).slideUp("medium");
+				});
+
+				// method 2
+				// $(document).on("click", ".panel .panel-heading", function () {
+				// 	$(this).addClass("opened");
+				// 	$(this).siblings().removeClass("opened");
+				// 	$(this).next().slideToggle("medium");
+
+				// 	$(".collapse").not($(this).next()).slideUp("medium");
+				// });
+
+				$(".btn").on("click", function () {
+					// method 1
+					$(".panel-group:last-child").clone(true).appendTo(".panels");
+
+					// method 2
+					// $(".panel-group:last-child").clone(false).appendTo(".panels");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 pull-right">
+					<a href="#" class="duplicate btn btn-primary">Duplicate</a>
+				</div>
+
+				<div class="col-md-6 panels">
+					<div class="panel-group">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a href="#">Item #1</a>
+								</h4>
+							</div>
+
+							<div class="panel-collapse collapse">
+								<div class="panel-body">
+									Anim pariatur cliche reprehenderit, enim
+									eiusmod high life accusamus terry richardson
+									ad squid. 3 wolf moon officia aute, non
+									cupidatat skateboard dolor brunch. Food
+									truck quinoa nesciunt laborum eiusmod.
+									Brunch 3 wolf moon tempor, sunt aliqua put a
+									bird on it squid single-origin coffee nulla
+									assumenda shoreditch et. Nihil anim keffiyeh
+									helvetica, craft beer labore wes anderson
+									cred nesciunt sapiente ea proident. Ad vegan
+									excepteur butcher vice lomo. Leggings
+									occaecat craft beer farm-to-table, raw denim
+									aesthetic synth nesciunt you probably
+									haven't heard of them accusamus labore
+									sustainable VHS.
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a href="#">Item #2</a>
+								</h4>
+							</div>
+
+							<div class="panel-collapse collapse">
+								<div class="panel-body">
+									Anim pariatur cliche reprehenderit, enim
+									eiusmod high life accusamus terry richardson
+									ad squid. 3 wolf moon officia aute, non
+									cupidatat skateboard dolor brunch. Food
+									truck quinoa nesciunt laborum eiusmod.
+									Brunch 3 wolf moon tempor, sunt aliqua put a
+									bird on it squid single-origin coffee nulla
+									assumenda shoreditch et. Nihil anim keffiyeh
+									helvetica, craft beer labore wes anderson
+									cred nesciunt sapiente ea proident. Ad vegan
+									excepteur butcher vice lomo. Leggings
+									occaecat craft beer farm-to-table, raw denim
+									aesthetic synth nesciunt you probably
+									haven't heard of them accusamus labore
+									sustainable VHS.
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a href="#">Item #3</a>
+								</h4>
+							</div>
+
+							<div class="panel-collapse collapse">
+								<div class="panel-body">
+									Anim pariatur cliche reprehenderit, enim
+									eiusmod high life accusamus terry richardson
+									ad squid. 3 wolf moon officia aute, non
+									cupidatat skateboard dolor brunch. Food
+									truck quinoa nesciunt laborum eiusmod.
+									Brunch 3 wolf moon tempor, sunt aliqua put a
+									bird on it squid single-origin coffee nulla
+									assumenda shoreditch et. Nihil anim keffiyeh
+									helvetica, craft beer labore wes anderson
+									cred nesciunt sapiente ea proident. Ad vegan
+									excepteur butcher vice lomo. Leggings
+									occaecat craft beer farm-to-table, raw denim
+									aesthetic synth nesciunt you probably
+									haven't heard of them accusamus labore
+									sustainable VHS.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

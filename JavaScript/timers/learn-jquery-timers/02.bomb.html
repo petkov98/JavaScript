@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Timers - Bomb</title>
+
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+	<p id="countdown">Countdown: 5</p>
+
+	<button type="button" class="start">Start</button>
+
+	<button type="button" class="disarm" disabled>Disarm</button>
+
+	<script>
+		// Създайте javascript "бомба" като използвате `window.setTimeout`, която се взривява за период от 5 секунди след като
+		// е бил натиснат бутона "Start".
+		//
+		// При взривяването на бомбата трябва да се покаже съобщение със следния текст - "Boom!".
+		// Може да използвате функцията `window.alert` - https://developer.mozilla.org/en-US/docs/Web/API/Window/alert
+		//
+		// При натискане на бутона "Disarm" бомбата трябва да прекъсне обратното броене и
+		// да се върне в началното си състояние.
+		//
+		// При "чакащ" режим:
+		// 	- бутона "Start" трябва да бъде активен
+		// 	- бутона "Disarm" не трябва да бъде активен
+		//
+		// При обратно броене:
+		// 	- бутона "Start" не трябва да бъде активен
+		// 	- бутона "Disarm" трябва да бъде активен
+		//
+		// Пример: https://s3-eu-west-1.amazonaws.com/codecraft-production/uploads/0c9939ff518dad8417043c1126a623a4/timers-bomb.webm
+		// 
+		
+
+		$(document).ready(function() {
+			let start;
+			let myInterval;
+			$(document).on('click', ".start", function(){
+				let boom = 5;
+				myInterval = setInterval(function(){
+					document.getElementById('countdown').innerHTML = "Countdown: " + boom;
+					if (boom === 0 ){
+						clearInterval(myInterval);
+						alert('BOOOM!!!')
+					}else{
+						boom--;
+					}
+				}, 1000);
+				$(".start").attr('disabled', true)
+				$(".disarm").attr('disabled', false)
+			});
+			$(document).on('click', ".disarm", function(){
+				window.clearTimeout(myInterval);
+				$(".start").attr('disabled', false);
+				$(".disarm").attr('disabled', true);
+			})
+		});
+
+	</script>
+</body>
+</html>

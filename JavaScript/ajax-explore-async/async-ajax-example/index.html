@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ASYNC JS</title>
+	<style>
+		body {
+			background: #20262E;
+			padding: 20px;
+			font-family: Helvetica;
+		}
+
+		#banner-message {
+			background: #fff;
+			border-radius: 4px;
+			padding: 20px;
+			font-size: 25px;
+			text-align: center;
+			transition: all 0.2s;
+			margin: 0 auto;
+			width: 300px;
+		}
+
+		button {
+			background: #0084ff;
+			border: none;
+			border-radius: 5px;
+			padding: 8px 14px;
+			font-size: 15px;
+			color: #fff;
+		}
+
+		#banner-message.alt {
+			background: #0084ff;
+			color: #fff;
+			margin-top: 40px;
+			width: 200px;
+		}
+
+		#banner-message.alt button {
+			background: #fff;
+			color: #000;
+		}
+
+		#log {
+			font-size: 12px;
+			text-align: left;
+		}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var count = 0;
+
+			// handle click and add class
+			document.querySelector('button').addEventListener('click', function() {
+				var interval;
+				var thisRequest = count;
+
+				$('#log').append('<li>Request ' + thisRequest + ': starting AJAX request</li>');
+
+				$.ajax({
+					// this URL will respond after at least 1 second
+					url: 'https://httpbin.org/delay/1',
+					success: function(response) {
+						$('#log').append('<li>Request ' + thisRequest + ': got response.</li>');
+
+						clearInterval(interval);
+					}
+				});
+
+				$('#log').append('<li>Request ' + thisRequest + ': AJAX request started ...</li>');
+
+				interval = setInterval(function() {
+					$('#log').append('<li>Request ' + thisRequest + ': ... still working ...</li>');
+				}, 100);
+
+				count++;
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="banner-message">
+		<button>Send Request</button>
+
+		<ol id="log">
+
+		</ol>
+	</div>
+</body>
+</html>
